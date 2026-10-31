@@ -1,0 +1,28 @@
+Paxton Bank "Bridget" — Real-Time Multimodal Commercial Banking AI Companion
+Copyright 2026 Karletha Paxton, AI/ML Customer Engineer, Google
+https://www.linkedin.com/in/karletha-paxton/
+
+STATUTORY DEFENSIVE PUBLICATION & PRIOR ART NOTICE (35 U.S.C. § 102)
+--------------------------------------------------------------------
+This repository constitutes a publicly timestamped enabling technical disclosure
+and defensive publication of a two-tier real-time multimodal AI companion
+architecture for regulated financial services meetings, comprising:
+1. Tier-1 Low-Latency Voice & Live Avatar Conductor ("Bridget") operating over
+   full-duplex bidirectional audio/video streaming (Gemini 3.5 Flash Live native
+   audio + WebRTC multi-party meeting room) with speaker-attributed VAD,
+   barge-in floor yielding, presenter-mode master audio gating, and explicit
+   verbal client consent state gating.
+2. Tier-2 Asynchronous Multi-Agent Fleet orchestrated via Google Agent Development
+   Kit (ADK 2.x) (`Pulse` Sentiment Agent, `Panel` Capability & Grounding Analyst,
+   `Sentinel` Compliance Guardrail Agent, `Archivist` Sales Handoff Compiler, and
+   `Scorer` Lead Qualification Agent) executing out-of-band without blocking the
+   real-time voice loop.
+3. Deterministic + Model Armor Dual-Gate Floor Takeover ("Sentinel"), wherein
+   real-time detection of prohibited financial commitment categories (pricing
+   commitments, credit approvals, legal advice, sanctions, KYC commitments,
+   account opening guarantees, binding product claims, regulatory interpretations)
+   immediately revokes the AI companion's audio floor (`HUMAN_TAKEOVER`) and
+   routes control to a licensed human banker.
+4. Autonomous Topic-Matched Visual Slide Presentation on a client-safe shared
+   briefing canvas synchronized with spoken turns and grounded against an
+   enterprise RAG corpus (Vertex AI Search + local hybrid fallback).

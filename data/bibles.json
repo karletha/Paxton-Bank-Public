@@ -1,0 +1,439 @@
+[
+ {
+  "company": "Meridian Components Inc.",
+  "domain": "meridiancomponents.example.com",
+  "profile": "Meridian Components Inc. is a Columbus, Ohio-based precision manufacturing enterprise generating approximately $180M in annual revenue. The company manufactures high-tolerance machined parts and sensor housings for automotive and industrial machinery clients. Meridian is aggressively expanding its international footprint with new production capacity in Latin America and a commercial presence in Asia-Pacific, creating heightened demand for sophisticated multi-currency treasury and trade finance solutions.",
+  "timeline": [
+   {
+    "date": "2024-09-15",
+    "event": "Board of Directors formally approves $22M capital expenditure for new manufacturing facility in Monterrey.",
+    "motif": "Mexico plant expansion (Monterrey)"
+   },
+   {
+    "date": "2024-11-04",
+    "event": "Treasury team notes operational bottlenecks managing redundant cash pools across four distinct regional banking portals.",
+    "motif": "fragmented banking across 4 regional banks"
+   },
+   {
+    "date": "2025-01-20",
+    "event": "Groundbreaking ceremony takes place at the new Monterrey Industrial Park facility site.",
+    "motif": "Mexico plant expansion (Monterrey)"
+   },
+   {
+    "date": "2025-03-12",
+    "event": "High spot-rate FX markup on wire transfers to Mexican construction subcontractors leads to budget overruns.",
+    "motif": "MXN supplier payment corridor pain"
+   },
+   {
+    "date": "2025-04-18",
+    "event": "Meridian establishes regional sales entity incorporated in Singapore to handle APAC customer accounts.",
+    "motif": "Singapore sales hub launch"
+   },
+   {
+    "date": "2025-06-15",
+    "event": "Tier-1 automotive clients shift terms to net 60 days, causing severe cash flow strain during inventory build.",
+    "motif": "working-capital squeeze from 60-day receivables"
+   },
+   {
+    "date": "2025-08-22",
+    "event": "Internal audit report highlights excessive manual reconciliation hours needed to aggregate daily reporting from regional lenders.",
+    "motif": "fragmented banking across 4 regional banks"
+   },
+   {
+    "date": "2025-10-10",
+    "event": "Singapore sales hub officially launches operations, securing initial commercial supply orders in SGD.",
+    "motif": "Singapore sales hub launch"
+   },
+   {
+    "date": "2025-12-05",
+    "event": "Delayed MXN supplier payments stall equipment installation at the Monterrey plant due to currency clearing friction.",
+    "motif": "MXN supplier payment corridor pain"
+   },
+   {
+    "date": "2026-02-18",
+    "event": "Meridian forced to draw on expensive short-term revolver lines to bridge 60-day receivables gap during peak seasonal production.",
+    "motif": "working-capital squeeze from 60-day receivables"
+   },
+   {
+    "date": "2026-04-30",
+    "event": "Monterrey facility completes trial manufacturing runs and begins export deliveries to North American assembly plants.",
+    "motif": "Mexico plant expansion (Monterrey)"
+   },
+   {
+    "date": "2026-06-12",
+    "event": "Executive leadership issues an RFP to global commercial banks to consolidate fragmented banking relationships into a single primary treasury platform.",
+    "motif": "fragmented banking across 4 regional banks"
+   }
+  ],
+  "contacts": [
+   {
+    "name": "Arthur Vance",
+    "title": "Chief Executive Officer",
+    "email": "arthur.vance@meridiancomponents.example.com",
+    "phone": "+1-614-555-0112",
+    "persona": "Growth-focused visionary driving aggressive global expansion and plant infrastructure investments.",
+    "disposition": "friendly"
+   },
+   {
+    "name": "Eleanor Thorne",
+    "title": "Chief Financial Officer",
+    "email": "eleanor.thorne@meridiancomponents.example.com",
+    "phone": "+1-614-555-0145",
+    "persona": "Risk-averse capital allocator laser-focused on reducing borrowing costs, optimizing debt covenants, and protecting operating margins.",
+    "disposition": "skeptical"
+   },
+   {
+    "name": "Marcus Davenport",
+    "title": "Corporate Treasurer & Controller",
+    "email": "marcus.davenport@meridiancomponents.example.com",
+    "phone": "+1-614-555-0188",
+    "persona": "Detail-oriented treasury practitioner bogged down by manual bank portals, seeking seamless ERP integration and automated FX execution.",
+    "disposition": "friendly"
+   },
+   {
+    "name": "Brenda Holloway",
+    "title": "Chief Operating Officer",
+    "email": "brenda.holloway@meridiancomponents.example.com",
+    "phone": "+1-614-555-0192",
+    "persona": "Pragmatic operational leader focused on supply chain velocity, supplier relations in Mexico, and plant commissioning timelines.",
+    "disposition": "neutral"
+   },
+   {
+    "name": "Julian Sterling",
+    "title": "Finance & Supply Chain Manager",
+    "email": "julian.sterling@meridiancomponents.example.com",
+    "phone": "+1-614-555-0133",
+    "persona": "Tech-forward financial analyst seeking modern working capital tools, virtual cards, and automated payment workflows.",
+    "disposition": "friendly"
+   }
+  ],
+  "treasury_profile": {
+   "current_banks": [
+    "Buckeye Commerce Bank",
+    "Midwest Horizon Bank",
+    "Great Lakes Capital Bank",
+    "Valley First Financial"
+   ],
+   "payment_flows": "Heavy batch disbursements in USD to domestic metal suppliers; recurring high-value MXN payments to Mexican vendors and plant payroll; incoming 60-day term receivables in USD from automotive OEMs; emerging SGD revenue collections from APAC distributors.",
+   "fx_corridors": [
+    "USDMXN",
+    "USDSGD"
+   ],
+   "pain_points": [
+    "Excessive FX conversion fees and payment delays on USD-to-MXN vendor payables",
+    "Cash flow drag created by 60-day receivable terms from large OEM customers",
+    "Operational overhead from managing 4 separate regional bank portals without unified cash visibility",
+    "Lack of automated FX hedging execution for SGD and MXN exposure",
+    "Inability of existing regional banking partners to issue international letters of credit efficiently"
+   ],
+   "products_in_scope": [
+    "Cash Management & Virtual Accounts",
+    "FX Hedging & Auto-FX Solutions",
+    "Supply Chain Finance & Receivables Purchase",
+    "Commercial & Corporate Cards",
+    "Liquidity Management & Sweeping"
+   ]
+  },
+  "seed_motifs": [
+   "Mexico plant expansion (Monterrey)",
+   "Singapore sales hub launch",
+   "MXN supplier payment corridor pain",
+   "working-capital squeeze from 60-day receivables",
+   "fragmented banking across 4 regional banks"
+  ],
+  "revenue_musd": 180,
+  "industry": "precision manufacturing",
+  "hq": "Columbus, Ohio"
+ },
+ {
+  "company": "Bluewater Logistics Group",
+  "domain": "bluewaterlogistics.example.com",
+  "profile": "Bluewater Logistics Group is a $240M mid-market freight forwarding and third-party logistics provider based in Savannah, Georgia. Managing intermodal freight, warehousing, and cross-border transport across North America, the company services commercial shippers across diverse supply chains.",
+  "timeline": [
+   {
+    "date": "2024-09-15",
+    "event": "Board approves strategic initiative to expand dedicated cross-border trucking routes across North America.",
+    "motif": "cross-border trucking lanes into Canada and Mexico"
+   },
+   {
+    "date": "2024-11-04",
+    "event": "IT leadership initiates vendor evaluation for migrating legacy ERP infrastructure to a modern cloud TMS.",
+    "motif": "ERP migration to cloud TMS"
+   },
+   {
+    "date": "2025-01-12",
+    "event": "Finance team launches enhanced carrier quick-pay program to secure fleet capacity, accelerating driver payouts.",
+    "motif": "carrier quick-pay program straining liquidity"
+   },
+   {
+    "date": "2025-02-28",
+    "event": "Bluewater completes acquisition of Apex Customs Brokers Inc. to streamline border clearance operations.",
+    "motif": "acquisition of a customs brokerage"
+   },
+   {
+    "date": "2025-04-10",
+    "event": "Treasury identifies earnings volatility due to unhedged diesel costs and fluctuating CAD and MXN currency movements.",
+    "motif": "fuel-hedging FX exposure"
+   },
+   {
+    "date": "2025-06-18",
+    "event": "New freight corridors launch via Detroit and Laredo checkpoints, significantly increasing cross-border payload volume.",
+    "motif": "cross-border trucking lanes into Canada and Mexico"
+   },
+   {
+    "date": "2025-08-22",
+    "event": "ERP migration project enters Phase 1 cloud TMS deployment, highlighting bank integration requirements.",
+    "motif": "ERP migration to cloud TMS"
+   },
+   {
+    "date": "2025-10-15",
+    "event": "Carrier quick-pay participation reaches 65% of contract drivers, causing temporary operating cash flow strain.",
+    "motif": "carrier quick-pay program straining liquidity"
+   },
+   {
+    "date": "2025-12-05",
+    "event": "Treasury executes structured FX hedge contracts to mitigate volatile fuel price risks linked to northern and southern transit routes.",
+    "motif": "fuel-hedging FX exposure"
+   },
+   {
+    "date": "2026-02-14",
+    "event": "Integration of newly acquired customs brokerage entities onto corporate core financial channels completes.",
+    "motif": "acquisition of a customs brokerage"
+   },
+   {
+    "date": "2026-04-30",
+    "event": "Final cutover to cloud TMS is achieved, fully automating cross-border dispatch documentation and invoicing.",
+    "motif": "ERP migration to cloud TMS"
+   },
+   {
+    "date": "2026-06-20",
+    "event": "Bluewater negotiates structured working capital facility to sustainably support carrier quick-pay liquidity needs.",
+    "motif": "carrier quick-pay program straining liquidity"
+   }
+  ],
+  "contacts": [
+   {
+    "name": "Marcus Vance",
+    "title": "Chief Executive Officer",
+    "email": "marcus.vance@bluewaterlogistics.example.com",
+    "phone": "+1-912-555-0142",
+    "persona": "Visionary growth-focused executive eager to scale North American supply chain operations.",
+    "disposition": "friendly"
+   },
+   {
+    "name": "Eleanor Reyes",
+    "title": "Chief Financial Officer",
+    "email": "eleanor.reyes@bluewaterlogistics.example.com",
+    "phone": "+1-912-555-0188",
+    "persona": "Risk-averse and analytical steward prioritizing cash balance preservation and tight margin controls.",
+    "disposition": "skeptical"
+   },
+   {
+    "name": "David Sterling",
+    "title": "Corporate Treasurer",
+    "email": "david.sterling@bluewaterlogistics.example.com",
+    "phone": "+1-912-555-0123",
+    "persona": "Pragmatic financial manager seeking seamless bank connectivity and efficient cash pool structures.",
+    "disposition": "neutral"
+   },
+   {
+    "name": "Karen Thorne",
+    "title": "Chief Operating Officer",
+    "email": "karen.thorne@bluewaterlogistics.example.com",
+    "phone": "+1-912-555-0199",
+    "persona": "Operationally intense leader focused on fleet modernization, automation, and cloud TMS adoption.",
+    "disposition": "friendly"
+   },
+   {
+    "name": "Thomas Lindqvist",
+    "title": "Finance Manager - Fleet Operations",
+    "email": "thomas.lindqvist@bluewaterlogistics.example.com",
+    "phone": "+1-912-555-0165",
+    "persona": "Detail-oriented supervisor overseeing daily carrier payables, FX settlements, and driver disbursements.",
+    "disposition": "neutral"
+   }
+  ],
+  "treasury_profile": {
+   "current_banks": [
+    "Savannah Commercial Bank",
+    "First Atlantic Commerce Bank",
+    "Peachtree Trust & Banking"
+   ],
+   "payment_flows": "High-volume domestic and cross-border disbursements to independent carriers, bulk USD/CAD/MXN supplier payables, automated ACH/wire batch execution, and daily carrier quick-pay settlements.",
+   "fx_corridors": [
+    "USDCAD",
+    "USDMXN"
+   ],
+   "pain_points": [
+    "Working capital depletion caused by rapid carrier quick-pay adoption",
+    "Manual FX hedging execution for fuel cost variations and cross-border invoicing",
+    "Fragmented visibility into cash balances following customs brokerage acquisition",
+    "Inflexible host-to-host file formats with incumbent regional banks delaying cloud TMS integration",
+    "High cross-border transaction fees and slow settlement speeds with existing banking partners"
+   ],
+   "products_in_scope": [
+    "Cash Management",
+    "FX Hedging",
+    "Trade Finance",
+    "Commercial Cards",
+    "Liquidity Solutions"
+   ]
+  },
+  "seed_motifs": [
+   "cross-border trucking lanes into Canada and Mexico",
+   "fuel-hedging FX exposure",
+   "carrier quick-pay program straining liquidity",
+   "ERP migration to cloud TMS",
+   "acquisition of a customs brokerage"
+  ],
+  "revenue_musd": 240,
+  "industry": "freight and third-party logistics",
+  "hq": "Savannah, Georgia"
+ },
+ {
+  "company": "Helioform Materials",
+  "domain": "helioformmaterials.example.com",
+  "profile": "Helioform Materials is an Allentown, Pennsylvania-based specialty chemicals manufacturer generating approximately $145M in annual revenue. The company produces high-performance polymer additives and advanced coatings for automotive and industrial packaging clients. Helioform is experiencing rapid international revenue growth in Europe while maintaining a dense raw material supply chain across East Asia and Southeast Asia.",
+  "timeline": [
+   {
+    "date": "2024-09-15",
+    "event": "Executed multi-year supply agreement with South Korean and Singaporean precursor chemical suppliers requiring documentary letters of credit.",
+    "motif": "letter-of-credit heavy trade flows"
+   },
+   {
+    "date": "2024-10-28",
+    "event": "Following a corporate restructuring, the assistant treasurer departed, leaving the company operating with a treasury team of one.",
+    "motif": "treasury team of one"
+   },
+   {
+    "date": "2024-12-05",
+    "event": "Expanded supplier agreements in Singapore, significantly increasing procurement volume denominated in SGD and USD/SGD FX risk exposure.",
+    "motif": "Asia supplier base (Singapore, Korea) USD/SGD exposure"
+   },
+   {
+    "date": "2025-02-14",
+    "event": "Established a commercial sales entity in Frankfurt to capture European automotive demand, leading to significant incoming EUR receivables.",
+    "motif": "EU expansion adding EUR receivables"
+   },
+   {
+    "date": "2025-04-10",
+    "event": "Board of Directors approved an ambitious ESG strategic mandate, directing executive leadership to pursue sustainability-linked financing for capital upgrades.",
+    "motif": "sustainability-linked financing interest"
+   },
+   {
+    "date": "2025-06-22",
+    "event": "Regional banking partners reduced letter-of-credit sub-limits, creating bottleneck issues for inbound Asian chemical shipments.",
+    "motif": "letter-of-credit heavy trade flows"
+   },
+   {
+    "date": "2025-08-30",
+    "event": "Treasury operations experienced acute operational strain managing month-end cash pooling and balance sheet hedging without additional headcount.",
+    "motif": "treasury team of one"
+   },
+   {
+    "date": "2025-11-12",
+    "event": "Invoiced record sales across Germany and France, accumulating substantial trapped EUR balances lacking automated sweep capabilities.",
+    "motif": "EU expansion adding EUR receivables"
+   },
+   {
+    "date": "2026-01-18",
+    "event": "Fluctuations in Singapore Dollar exchange rates negatively impacted quarterly raw material cost predictions and operating margins.",
+    "motif": "Asia supplier base (Singapore, Korea) USD/SGD exposure"
+   },
+   {
+    "date": "2026-03-05",
+    "event": "Formally initiated a banking RFP seeking a $45M revolving credit facility with sustainability-linked KPI discount structures.",
+    "motif": "sustainability-linked financing interest"
+   },
+   {
+    "date": "2026-05-15",
+    "event": "Issued letters of credit totaling $12M to secure annual polymer supply contracts with Korean key vendors.",
+    "motif": "letter-of-credit heavy trade flows"
+   },
+   {
+    "date": "2026-07-02",
+    "event": "Engaged prospective corporate banks to evaluate global cash management solutions to relieve pressure on the single-person treasury unit.",
+    "motif": "treasury team of one"
+   }
+  ],
+  "contacts": [
+   {
+    "name": "Marcus Vance",
+    "title": "Chief Executive Officer",
+    "email": "marcus.vance@helioformmaterials.example.com",
+    "phone": "+1-610-555-0112",
+    "persona": "Growth-driven innovator who prioritizes global market penetration and corporate sustainability commitments.",
+    "disposition": "friendly"
+   },
+   {
+    "name": "Elena Rostova",
+    "title": "Chief Financial Officer",
+    "email": "elena.rostova@helioformmaterials.example.com",
+    "phone": "+1-610-555-0144",
+    "persona": "Disciplined risk manager focused on working capital optimization, FX margin defense, and bank fee efficiency.",
+    "disposition": "skeptical"
+   },
+   {
+    "name": "Derrick Sterling",
+    "title": "Chief Operating Officer",
+    "email": "derrick.sterling@helioformmaterials.example.com",
+    "phone": "+1-610-555-0188",
+    "persona": "Pragmatic operations leader dedicated to supply chain continuity and smooth trade transaction execution.",
+    "disposition": "neutral"
+   },
+   {
+    "name": "Arthur Pendelton",
+    "title": "Treasurer and Controller",
+    "email": "arthur.pendelton@helioformmaterials.example.com",
+    "phone": "+1-610-555-0123",
+    "persona": "Resource-constrained single-person treasury operator managing cash positioning, trade documents, and reporting manually.",
+    "disposition": "friendly"
+   },
+   {
+    "name": "Chloe Lin",
+    "title": "Operations Finance Manager",
+    "email": "chloe.lin@helioformmaterials.example.com",
+    "phone": "+1-610-555-0167",
+    "persona": "Detail-oriented supervisor overseeing AP/AR workflows and international vendor payment processing.",
+    "disposition": "neutral"
+   }
+  ],
+  "treasury_profile": {
+   "current_banks": [
+    "Keystone Commercial Bank",
+    "Penn Liberty Trust",
+    "Allegheny Business Bank",
+    "MidAtlantic First Bank"
+   ],
+   "payment_flows": "Heavy international outgoing wire payments to Asian chemical suppliers, incoming EUR SEPA and cross-border wires from European customers, domestic ACH payroll/vendor payments, and intensive commercial paper/letter-of-credit issuances.",
+   "fx_corridors": [
+    "USDSGD",
+    "EURUSD"
+   ],
+   "pain_points": [
+    "High operational risk and workload concentration due to a treasury team of one",
+    "Lack of automated cross-border liquidity sweeps leading to trapped EUR balances in Europe",
+    "Manual, paper-intensive letter-of-credit processing slowing procurement velocity",
+    "Unhedged exposure to USD/SGD rate fluctuations eroding quarterly gross margins",
+    "Inability of current regional lenders to provide sustainability-linked credit pricing frameworks"
+   ],
+   "products_in_scope": [
+    "Cash Management",
+    "FX Hedging",
+    "Trade Finance",
+    "Commercial Cards",
+    "Liquidity"
+   ]
+  },
+  "seed_motifs": [
+   "Asia supplier base (Singapore, Korea) USD/SGD exposure",
+   "EU expansion adding EUR receivables",
+   "letter-of-credit heavy trade flows",
+   "sustainability-linked financing interest",
+   "treasury team of one"
+  ],
+  "revenue_musd": 145,
+  "industry": "specialty chemicals",
+  "hq": "Allentown, Pennsylvania"
+ }
+]

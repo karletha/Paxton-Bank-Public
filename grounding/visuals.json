@@ -1,0 +1,137 @@
+{
+ "bucket": "kairos-504105-paxtonprospect",
+ "visuals": [
+  {
+   "id": "ccb-asia-coverage",
+   "title": "Paxton Bank in Asia Pacific",
+   "source_title": "Paxton Bank Global Presence",
+   "source_url": "https://www.paxtonbank.com/global/about-us/global-presence",
+   "topics": [
+    "asia",
+    "asia-pacific",
+    "china",
+    "hong",
+    "kong",
+    "singapore",
+    "japan",
+    "india",
+    "shanghai",
+    "location",
+    "locations",
+    "located",
+    "countries",
+    "markets",
+    "presence",
+    "coverage",
+    "offices",
+    "region",
+    "regions",
+    "apac"
+   ],
+   "gcs": "presents/library/ccb-asia-coverage.png"
+  },
+  {
+   "id": "ccb-global-network",
+   "title": "One Bank, Globally",
+   "source_title": "Paxton Bank Global Presence",
+   "source_url": "https://www.paxtonbank.com/global/about-us/global-presence",
+   "topics": [
+    "global",
+    "network",
+    "worldwide",
+    "international",
+    "footprint",
+    "reach",
+    "countries",
+    "everywhere",
+    "presence"
+   ],
+   "gcs": "presents/library/ccb-global-network.png"
+  },
+  {
+   "id": "ccb-liquidity",
+   "title": "Liquidity Management",
+   "source_title": "TTS \u2014 Liquidity Management Services",
+   "source_url": "https://www.paxtonbank.com/global/businesses/services/treasury-and-trade-solutions/liquidity-management-services",
+   "topics": [
+    "liquidity",
+    "cash",
+    "pooling",
+    "sweep",
+    "sweeping",
+    "visibility",
+    "concentration",
+    "balances",
+    "idle",
+    "target",
+    "balancing"
+   ],
+   "gcs": "presents/library/ccb-liquidity.png"
+  },
+  {
+   "id": "ccb-payments",
+   "title": "Payments & Receivables",
+   "source_title": "TTS \u2014 Payments & Receivables",
+   "source_url": "https://www.paxtonbank.com/global/businesses/services/treasury-and-trade-solutions/payments-and-receivables",
+   "topics": [
+    "payment",
+    "payments",
+    "cross-border",
+    "crossborder",
+    "fx",
+    "foreign",
+    "exchange",
+    "currencies",
+    "worldlink",
+    "clearing",
+    "settle",
+    "settlement",
+    "receivables",
+    "wire"
+   ],
+   "gcs": "presents/library/ccb-payments.png"
+  },
+  {
+   "id": "ccb-trade",
+   "title": "Trade & Working Capital",
+   "source_title": "TTS \u2014 Global Trade & Solutions",
+   "source_url": "https://www.paxtonbank.com/global/businesses/services/treasury-and-trade-solutions/global-trade",
+   "topics": [
+    "trade",
+    "supplier",
+    "suppliers",
+    "financing",
+    "supply",
+    "chain",
+    "import",
+    "export",
+    "letters",
+    "credit",
+    "working",
+    "capital",
+    "discounting"
+   ],
+   "gcs": "presents/library/ccb-trade.png"
+  },
+  {
+   "id": "ccb-overview",
+   "title": "Paxton Commercial Bank",
+   "source_title": "Paxton Commercial Bank Overview",
+   "source_url": "https://www.paxtonbank.com/global/businesses/banking/commercial-bank",
+   "topics": [
+    "commercial",
+    "bank",
+    "ccb",
+    "paxton",
+    "who",
+    "about",
+    "overview",
+    "company",
+    "services",
+    "offer",
+    "capabilities"
+   ],
+   "gcs": "presents/library/ccb-overview.png"
+  }
+ ]
+}

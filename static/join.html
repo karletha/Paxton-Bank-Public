@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paxton Bank meeting</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,'Segoe UI',Roboto,sans-serif;background:#001428;color:#fff;min-height:100vh}
+  header{display:flex;align-items:center;gap:10px;padding:14px 22px;background:#00254A}
+  header b{letter-spacing:2px;font-size:18px}
+  .chip{background:rgba(56,189,248,.2);color:#7dd3fc;border:1px solid rgba(56,189,248,.3);font-family:monospace;font-size:10px;font-weight:700;letter-spacing:2px;padding:2px 8px;border-radius:5px}
+  header span.st{margin-left:auto;font-size:12px;color:#7dd3fc}
+  main{max-width:1100px;margin:0 auto;padding:18px}
+  .grid{display:grid;grid-template-columns:1fr 300px;gap:14px}
+  .stagebox{background:#0b1220;border:1px solid #1e3a5f;border-radius:14px;overflow:hidden;position:relative;min-height:420px;display:flex;align-items:center;justify-content:center}
+  .stagebox video{width:100%;max-height:560px;object-fit:contain;display:block}
+  .stagebox .tag{position:absolute;left:12px;bottom:10px;background:rgba(0,0,0,.55);padding:4px 10px;border-radius:8px;font-size:12px;color:#7dd3fc;font-weight:700}
+  .tiles{display:flex;flex-direction:column;gap:12px}
+  .tile{background:#0b1220;border:1px solid #1e3a5f;border-radius:12px;overflow:hidden;position:relative;aspect-ratio:4/3}
+  .tile img,.tile video{width:100%;height:100%;object-fit:cover;display:block}
+  .tile .tag{position:absolute;left:8px;bottom:6px;background:rgba(0,0,0,.55);padding:2px 8px;border-radius:6px;font-size:11px}
+  .tile .micbadge{position:absolute;right:8px;bottom:6px;padding:3px 9px;border-radius:6px;font-size:10.5px;font-weight:700;cursor:pointer;border:none;color:#fff}
+  .mic-live{background:#059669;color:#fff}
+  .mic-muted{background:#dc2626;color:#fff}
+  .cap{margin-top:12px;background:#0b1220;border:1px solid #1e3a5f;border-radius:10px;padding:10px 14px;font-size:13px;color:#cbd5e1;min-height:42px}
+  .chatrow{margin-top:10px;display:flex;gap:8px;align-items:center}
+  .chatrow input{flex:1;background:#0b1220;border:1px solid #1e3a5f;border-radius:10px;padding:10px 14px;color:#fff;font-size:13px}
+  .chatrow button{background:#0284c7;color:#fff;border:none;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
+  .chatrow button.mutebtn-live{background:#0f172a;border:1px solid #334155;color:#e2e8f0}
+  .chatrow button.mutebtn-muted{background:#dc2626;border:1px solid #ef4444;color:#fff}
+  .topmute{margin-left:12px;padding:5px 12px;border-radius:8px;font-size:11.5px;font-weight:700;border:none;cursor:pointer}
+  footer{max-width:1100px;margin:8px auto 18px;padding:0 18px;font-size:11px;color:#64748b;display:flex;justify-content:space-between}
+  footer a{color:#38bdf8;text-decoration:none}
+  #gate{position:fixed;inset:0;background:#001428;display:flex;align-items:center;justify-content:center;z-index:10}
+  .card{background:#fff;color:#1F2933;border-radius:16px;padding:34px 38px;width:360px}
+  .card h1{font-size:17px;color:#00254A;margin-bottom:4px}
+  .card p{font-size:12.5px;color:#6b7280;margin-bottom:16px}
+  .card input[type="text"],.card input:not([type]){width:100%;border:1px solid #D1D5DB;border-radius:10px;padding:11px 13px;font-size:14px;margin-bottom:12px}
+  .card label.chk{display:flex;align-items:center;gap:8px;font-size:12px;color:#374151;margin-bottom:14px;cursor:pointer}
+  .card button{width:100%;background:#0284c7;color:#fff;border:none;border-radius:10px;padding:12px;font-size:14px;font-weight:700;cursor:pointer}
+  .card button:disabled{opacity:.6}
+  .note{font-size:11px;color:#94a3b8;margin-top:10px}
+</style>
+</head>
+<body>
+<div id="gate"><form class="card" id="gateform">
+  <h1>Join your Paxton Bank meeting</h1>
+  <p>You'll be asked to allow your camera and microphone. Kira (Bridget), Paxton Bank's AI advisor, is in this meeting.</p>
+  <input id="myname" placeholder="Your name (e.g. Sarah Chen)" required autocomplete="name">
+  <label class="chk"><input type="checkbox" id="startmuted"> Join with microphone muted (prevent echo on same PC)</label>
+  <button id="joinbtn" type="submit">Join meeting</button>
+  <div class="note">By joining you agree the session may be recorded for quality purposes.</div>
+</form></div>
+
+<header>
+  <b>PAXTON BANK</b>
+  <span class="chip">KIRA · BRIDGET AI</span>
+  <span style="font-size:12px;color:#94a3b8">Live Client Meeting</span>
+  <span class="st" id="status">connecting…</span>
+  <button type="button" id="topmutebtn" class="topmute mic-live">🎙 Mic Live (Click to Mute)</button>
+</header>
+<main>
+  <div class="grid">
+    <div class="stagebox"><video id="avatar" autoplay playsinline poster="/static/companion_avatar.png?v=kira2"></video><span class="tag">Kira (Bridget) · Paxton Bank AI Advisor</span></div>
+    <div class="tiles">
+      <div class="tile"><img id="peercam" alt="" style="background:#0f172a"><span class="tag" id="peername">Waiting for Paxton Bank banker…</span></div>
+      <div class="tile"><video id="selfcam" autoplay playsinline muted></video><span class="tag" id="selfname">You</span><button type="button" id="selfmicbadge" class="micbadge mic-live">🎙 Mic Live</button></div>
+    </div>
+  </div>
+  <div class="cap" id="caption">Connected — speak naturally or type below to talk with your banker and Kira.</div>
+  <form class="chatrow" id="chatform">
+    <button type="button" id="mutebtn" class="mutebtn-live">🎙 Mute Mic</button>
+    <input id="chatinput" placeholder="Speak into your microphone or type a message to the meeting room…" autocomplete="off">
+    <button type="submit">Send</button>
+  </form>
+</main>
+<footer>
+  <span>Paxton Bank Institutional Client Meeting · Gemini 3.5 Flash Live HD Audio &amp; Kira Avatar</span>
+  <span>Created by <b>Karletha Paxton</b>, AI ML Customer Engineer Google · <a href="https://www.linkedin.com/in/karletha-paxton/" target="_blank" rel="noopener noreferrer">linkedin.com/in/karletha-paxton</a></span>
+</footer>
+
+<script>
+(async () => {
+  const q = new URLSearchParams(location.search);
+  const TOKEN = q.get('t') || '';
+  const ROOM = location.pathname.split('/').pop();
+  const CODEC = 'video/mp4; codecs="avc1.42C020, mp4a.40.2"';
+  let MYNAME = '';
+
+  const st = m => document.getElementById('status').textContent = m;
+
+  // E2E metrics — sampled by the headless smoothness harness.
+  const AV = window.__av = { lanes: {}, video: { chunks: 0, appendErrs: 0, softSeeks: 0,
+                                                 edgeSeeks: 0, stalls: 0, rebuilds: 0,
+                                                 replays: 0, mediaErrs: 0, bargeDrops: 0 },
+                             vad: { gated: 0, passed: 0, noiseFloor: 0 } };
+
+  // ---------- audio: ONE clock, buffered lanes ----------
+  // Buffered-lane player (sanrepo StreamAudioPlayer design): a single shared
+  // AudioContext; each stream (Bridget 24k / human relay 16k) is a lane with a
+  // prebuffer before it starts, a scheduling-horizon cap, a fade-in on every
+  // (re)start so restarts never click, and a fade-out flush for barge-in.
+  // createBuffer at the content rate — the browser resamples; no second clock.
+  let actx = null, analyser = null;
+  function ensureCtx() {
+    if (!actx) {
+      actx = new AudioContext({ latencyHint: 'playback' });
+      // keep-alive: a near-silent tone stops background-tab clock throttling
+      const g = actx.createGain(); g.gain.value = 0.0001;
+      const o = actx.createOscillator(); o.frequency.value = 30;
+      o.connect(g); g.connect(actx.destination); o.start();
+      // analyser tap: every playback path routes through it — it feeds the
+      // adaptive echo gate's refLevel (how loud Bridget is on OUR speakers)
+      analyser = actx.createAnalyser(); analyser.fftSize = 512;
+      analyser.connect(actx.destination);
+    }
+    if (actx.state === 'suspended') actx.resume();
+    return actx;
+  }
+  // Bridget's playback reference level, 0-255 scale (float RMS x500, capped —
+  // the avatar-hybrid-vad reference scale, taken as given). Unsmoothed,
+  // sampled at gate time. isBotSpeaking = model speech within the last 1200ms
+  // (caption/audio events), the reference's hold window.
+  const BOT_SPEECH_HOLD_MS = 1200;
+  let lastBotSpeechAt = 0, lastInterruptAt = 0;
+  function getRefLevel() {
+    if (!analyser) return 0;
+    const buf = new Uint8Array(analyser.fftSize);
+    analyser.getByteTimeDomainData(buf);
+    let acc = 0;
+    for (let i = 0; i < buf.length; i++) { const d = (buf[i] - 128) / 128; acc += d * d; }
+    return Math.min(255, Math.sqrt(acc / buf.length) * 500);
+  }
+  const isBotSpeaking = () => Date.now() - lastBotSpeechAt < BOT_SPEECH_HOLD_MS;
+
+  function makeLane(rate, label) {
+    const MIN_START = 0.24;   // prebuffer before the first start
+    const REBUFFER  = 0.12;   // smaller cushion after an underrun (fast restart)
+    const AHEAD     = 0.48;   // never schedule further ahead than this
+    const AUDIO_LEAD_SECONDS = 0.05;  // restart lead: slack for the next late chunk
+    const FADE      = 0.008;  // fade-in on (re)start — kills the click
+    const MAX_BACKLOG = 1.5;  // backlog drift clamp: never lag live by more
+    const L = { q: [], qSec: 0, next: 0, live: false, need: MIN_START,
+                srcs: new Set(), drainT: 0, gain: null,
+                stats: { chunks: 0, starts: 0, underruns: 0, drops: 0 } };
+    AV.lanes[label] = L.stats;
+
+    function pump() {
+      const ctx = actx;
+      if (!ctx || ctx.state !== 'running' || ctx.currentTime === 0 && L.live) return;
+      if (L.live && !L.q.length && ctx.currentTime > L.next) {
+        L.live = false; L.need = REBUFFER; L.drainT = ctx.currentTime;
+      }
+      if (!L.live) {
+        if (L.qSec < L.need) return;
+        L.live = true; L.stats.starts++;
+        // a refill within 1s of draining = a genuine mid-stream underrun
+        if (L.drainT && ctx.currentTime - L.drainT < 1.0) L.stats.underruns++;
+        L.next = ctx.currentTime + AUDIO_LEAD_SECONDS;
+        L.gain = ctx.createGain();
+        L.gain.gain.setValueAtTime(0, L.next);
+        L.gain.gain.linearRampToValueAtTime(1, L.next + FADE);
+        L.gain.connect(analyser || ctx.destination);
+      }
+      while (L.q.length && (L.next - ctx.currentTime) < AHEAD) {
+        const f32 = L.q.shift();
+        const dur = f32.length / rate;
+        L.qSec -= dur;
+        const buf = ctx.createBuffer(1, f32.length, rate);
+        buf.copyToChannel(f32, 0);
+        const s = ctx.createBufferSource();
+        s.buffer = buf; s.connect(L.gain);
+        const at = Math.max(L.next, ctx.currentTime);
+        s.start(at); L.next = at + dur;
+        L.srcs.add(s); s.onended = () => { L.srcs.delete(s); pump(); };
+      }
+    }
+    setInterval(pump, 100);
+
+    L.push = (b64) => {
+      const raw = atob(b64), n = raw.length >> 1;
+      const f = new Float32Array(n);
+      for (let i = 0; i < n; i++) {
+        f[i] = ((raw.charCodeAt(2 * i) | (raw.charCodeAt(2 * i + 1) << 8)) << 16 >> 16) / 32768;
+      }
+      L.q.push(f); L.qSec += n / rate; L.stats.chunks++;
+      // backlog drift clamp: a live conversation must never build a delay —
+      // if playback fell behind, skip the oldest audio forward
+      while (L.qSec > MAX_BACKLOG && L.q.length > 1) {
+        const dropped = L.q.shift();
+        L.qSec -= dropped.length / rate; L.stats.drops++;
+      }
+      pump();
+    };
+    L.flush = () => {
+      const ctx = actx;
+      if (ctx && L.gain) { try { L.gain.gain.setTargetAtTime(0, ctx.currentTime, 0.015); } catch {} }
+      const old = [...L.srcs]; L.srcs.clear();
+      setTimeout(() => old.forEach(s => { try { s.stop(); } catch {} }), 80);
+      L.q.length = 0; L.qSec = 0; L.live = false; L.need = REBUFFER;
+      L.next = 0; L.gain = null;
+    };
+    return L;
+  }
+  const lane24 = makeLane(24000, 'bridget24');   // audio-modality fallback lane
+  const lane16 = makeLane(16000, 'humans16');    // banker/other-human relay
+
+  // ---------- Bridget video (fMP4 over WS -> MediaSource) ----------
+  // Her voice is MUXED in this stream, so its behavior IS her voice quality.
+  // 2026-08-19 optimization pass: 2-chunk prebuffer; ADAPTIVE live-edge chase
+  // (1.08x between 0.35s and 1.2s lag — pitch preserved by the browser — snap
+  // past 1.2s); 1000ms liveness watchdog with 3-strike self-heal via cached
+  // init-segment rebuild; server warm-ring replay as the strongest recovery;
+  // 400ms barge-in drop window for the in-flight tail of an interrupted turn.
+  const MIN_PREBUFFER_CHUNKS = 2;
+  const BARGE_IN_DROP_MS = 400;
+  const CHASE_MIN_LAG_S = 0.35, CHASE_MAX_LAG_S = 1.2, CHASE_RATE = 1.08;
+  const vid = document.getElementById('avatar');
+  let ms, sb, vq = [], vStarted = false, vStrikes = 0, vLastTime = -1;
+  let dropUntil = 0, awaitMoof = false;
+  function newPipe() {
+    ms = new MediaSource(); vq = []; sb = null; vStarted = false; awaitMoof = false;
+    vid.src = URL.createObjectURL(ms);
+    ms.addEventListener('sourceopen', () => {
+      sb = ms.addSourceBuffer(CODEC); sb.mode = 'sequence';
+      sb.addEventListener('updateend', pump);
+      pump();
+    });
+  }
+  // Init-segment caching: the stream's ftyp+moov arrive exactly once per live
+  // session — cache them so a LOCAL rebuild can re-init the decoder without
+  // waiting on the server (the server warm-ring replay remains the clean path).
+  let cachedInit = null, initScan = null;
+  function feedInitScan(u8) {
+    if (u8.length >= 8 && u8[4] === 102 && u8[5] === 116 && u8[6] === 121 && u8[7] === 112) {
+      initScan = { parts: [], got: 0 };          // 'ftyp' — a new stream begins
+    }
+    if (!initScan) return;
+    initScan.parts.push(u8); initScan.got += u8.length;
+    if (initScan.got > 4e6) { initScan = null; return; }
+    const all = new Uint8Array(initScan.got);
+    let o = 0; for (const p of initScan.parts) { all.set(p, o); o += p.length; }
+    let off = 0;
+    while (off + 8 <= all.length) {
+      const size = ((all[off] << 24) | (all[off+1] << 16) | (all[off+2] << 8) | all[off+3]) >>> 0;
+      if (size < 8) { initScan = null; return; }
+      if (off + size > all.length) return;       // incomplete box — wait for more
+      const typ = String.fromCharCode(all[off+4], all[off+5], all[off+6], all[off+7]);
+      off += size;
+      if (typ === 'moov') { cachedInit = all.slice(0, off); initScan = null; return; }
+      if (typ !== 'ftyp' && typ !== 'free') { initScan = null; return; }
+    }
+  }
+  // moof alignment: after dropping bytes mid-stream, re-enter only at a
+  // fragment boundary — appending from inside a box poisons the SourceBuffer
+  function alignToMoof(u8) {
+    for (let i = 4; i + 4 <= u8.length; i++) {
+      if (u8[i] === 109 && u8[i+1] === 111 && u8[i+2] === 111 && u8[i+3] === 102) return u8.slice(i - 4);
+    }
+    return null;
+  }
+  function rebuildMediaSourceLocally(reason) {
+    AV.video.rebuilds++;
+    newPipe();
+    if (cachedInit) { vq.push(cachedInit.slice().buffer); awaitMoof = true; }
+    requestReplay();   // server re-seat supersedes the local splice when available
+  }
+  let lastReplayReq = 0;
+  function requestReplay() {
+    const now = Date.now();
+    if (now - lastReplayReq < 4000) return;
+    lastReplayReq = now;
+    AV.video.replays++;
+    try { if (ws && ws.readyState === 1) ws.send(JSON.stringify({ type: 'video_replay' })); } catch {}
+  }
+  function acceptVideoChunk(u8) {
+    if (Date.now() < dropUntil) { AV.video.bargeDrops++; awaitMoof = true; return; }
+    feedInitScan(u8);
+    if (awaitMoof) {
+      if (u8.length >= 8 && u8[4] === 102 && u8[5] === 116 && u8[6] === 121 && u8[7] === 112) awaitMoof = false; // fresh stream/replay
+      else {
+        const a = alignToMoof(u8); if (!a) return; u8 = a; awaitMoof = false;
+        // the parser was left mid-fragment by the last pre-drop append —
+        // abort() resets it to segment-start so the spliced moof parses
+        try { if (sb && !sb.updating) sb.abort(); } catch {}
+      }
+    }
+    vq.push(u8.buffer.byteLength === u8.length ? u8.buffer : u8.slice().buffer);
+    AV.video.chunks++; pump();
+  }
+  function pump() {
+    if (!sb || sb.updating || !vq.length) return;
+    if (!vStarted) { if (vq.length < MIN_PREBUFFER_CHUNKS) return; vStarted = true; }
+    try { sb.appendBuffer(vq[0]); vq.shift(); }
+    catch (e) {
+      AV.video.appendErrs++;
+      if (e && e.name === 'QuotaExceededError' && vid.currentTime > 3) {
+        try { sb.remove(0, vid.currentTime - 2); } catch { requestReplay(); }
+      } else { vq.shift(); requestReplay(); }
+    }
+    if (vid.paused) {
+      vid.play().catch(() => {
+        vid.muted = true;
+        vid.play().catch(() => {});
+      });
+    }
+  }
+  setInterval(() => {   // 1000ms cadence: adaptive live-edge chase + liveness watchdog
+    if (!vid.buffered.length) return;
+    if (Date.now() - lastInterruptAt < 3000) return;   // post-interrupt grace (reference guard)
+    const end = vid.buffered.end(vid.buffered.length - 1);
+    const lag = end - vid.currentTime;
+    if (lag > CHASE_MAX_LAG_S) {
+      vid.playbackRate = 1.0;
+      vid.currentTime = end - 0.30;
+      AV.video.edgeSeeks++;
+      return;
+    }
+    vid.playbackRate = lag > CHASE_MIN_LAG_S ? CHASE_RATE : 1.0;
+    // stall: clock frozen while data sits decoded ahead of it
+    if (!vid.paused && vid.currentTime === vLastTime && lag > 0.25) {
+      AV.video.stalls++;
+      if (++vStrikes >= 3) { vStrikes = 0; rebuildMediaSourceLocally('watchdog'); }
+      else { vid.currentTime = end - 0.05; vid.play().catch(() => {}); AV.video.softSeeks++; }
+    } else vStrikes = 0;
+    vLastTime = vid.currentTime;
+  }, 1000);
+  vid.addEventListener('error', () => { AV.video.mediaErrs++; rebuildMediaSourceLocally('media-error'); });
+  newPipe();
+
+  // ---------- join & mute flow ----------
+  let micMuted = false;
+  let activeStream = null;
+
+  function setProspectMicMuted(muted) {
+    micMuted = !!muted;
+    if (activeStream && activeStream.getAudioTracks) {
+      activeStream.getAudioTracks().forEach(t => { t.enabled = !micMuted; });
+    }
+    if (window.__vadReset) window.__vadReset();
+    if (micMuted && ws && ws.readyState === 1) {
+      // Send a single 200ms digital silence frame so server VAD closes any open turn cleanly
+      try { ws.send(new ArrayBuffer(6400)); } catch {}
+    }
+    const topBtn = document.getElementById('topmutebtn');
+    const tileBadge = document.getElementById('selfmicbadge');
+    const chatBtn = document.getElementById('mutebtn');
+    if (topBtn) {
+      topBtn.textContent = micMuted ? '🔇 Mic Muted (Click to Unmute)' : '🎙 Mic Live (Click to Mute)';
+      topBtn.className = 'topmute ' + (micMuted ? 'mic-muted' : 'mic-live');
+    }
+    if (tileBadge) {
+      tileBadge.textContent = micMuted ? '🔇 Mic Muted' : '🎙 Mic Live';
+      tileBadge.className = 'micbadge ' + (micMuted ? 'mic-muted' : 'mic-live');
+    }
+    if (chatBtn) {
+      chatBtn.textContent = micMuted ? '🔇 Unmute Mic' : '🎙 Mute Mic';
+      chatBtn.className = micMuted ? 'mutebtn-muted' : 'mutebtn-live';
+    }
+  }
+
+  ['topmutebtn', 'selfmicbadge', 'mutebtn'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('click', () => setProspectMicMuted(!micMuted));
+  });
+
+  document.getElementById('gateform').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    MYNAME = document.getElementById('myname').value.trim() || 'Client Guest';
+    const startMutedChk = document.getElementById('startmuted');
+    const initialMute = startMutedChk ? startMutedChk.checked : false;
+    document.getElementById('selfname').textContent = MYNAME + ' (you)';
+    document.getElementById('joinbtn').disabled = true;
+    ensureCtx();
+    try {
+      await start(initialMute);
+      document.getElementById('gate').style.display = 'none';
+      vid.play().catch(() => {});
+    } catch (err) {
+      console.error('Join warning:', err);
+      document.getElementById('gate').style.display = 'none';
+    }
+  });
+
+  document.getElementById('chatform').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const inp = document.getElementById('chatinput');
+    const txt = (inp.value || '').trim();
+    if (!txt || !ws || ws.readyState !== 1) return;
+    ws.send(JSON.stringify({ type: 'chat', who: 'prospect', name: MYNAME, text: txt }));
+    inp.value = '';
+  });
+
+  function makeFallbackVideoStream(label) {
+    const fc = document.createElement('canvas');
+    fc.width = 320; fc.height = 240;
+    const fctx = fc.getContext('2d');
+    const initials = (label || 'Client').split(/\s+/).map(w => w[0] || '').join('').slice(0, 2).toUpperCase() || 'CL';
+    let tick = 0;
+    setInterval(() => {
+      tick++;
+      const grad = fctx.createLinearGradient(0, 0, 320, 240);
+      grad.addColorStop(0, '#09192f');
+      grad.addColorStop(1, '#102a4c');
+      fctx.fillStyle = grad;
+      fctx.fillRect(0, 0, 320, 240);
+      const r = 44 + Math.sin(tick * 0.25) * 3;
+      fctx.beginPath();
+      fctx.arc(160, 102, r, 0, Math.PI * 2);
+      fctx.fillStyle = 'rgba(2, 132, 199, 0.25)';
+      fctx.fill();
+      fctx.beginPath();
+      fctx.arc(160, 102, 38, 0, Math.PI * 2);
+      fctx.fillStyle = '#0284c7';
+      fctx.fill();
+      fctx.fillStyle = '#ffffff';
+      fctx.font = 'bold 26px sans-serif';
+      fctx.textAlign = 'center';
+      fctx.textBaseline = 'middle';
+      fctx.fillText(initials, 160, 103);
+      fctx.fillStyle = '#e2e8f0';
+      fctx.font = 'bold 14px sans-serif';
+      fctx.fillText(label || 'Client Guest', 160, 172);
+      fctx.fillStyle = '#38bdf8';
+      fctx.font = '11px monospace';
+      fctx.fillText('LIVE CLIENT STREAM', 160, 194);
+    }, 150);
+    return { stream: fc.captureStream ? fc.captureStream(10) : null, canvas: fc };
+  }
+
+  let ws;
+  async function start(initialMute = false) {
+    let stream = null;
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({
+          audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true },
+          video: { width: 640, height: 480 },
+        });
+      } catch (e1) {
+        try {
+          stream = await navigator.mediaDevices.getUserMedia({
+            audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true },
+          });
+        } catch (e2) {
+          console.warn('Camera/mic unavailable or busy in another window, using live fallback tile:', e2);
+        }
+      }
+    }
+    let fallbackCanvas = null;
+    const hasVideo = stream && stream.getVideoTracks && stream.getVideoTracks().length > 0;
+    if (!hasVideo) {
+      const fb = makeFallbackVideoStream(MYNAME);
+      fallbackCanvas = fb.canvas;
+      if (fb.stream) {
+        if (stream && stream.getAudioTracks().length > 0) {
+          fb.stream.addTrack(stream.getAudioTracks()[0]);
+        }
+        stream = fb.stream;
+      }
+    }
+    activeStream = stream;
+    setProspectMicMuted(initialMute);
+    const vself = document.getElementById('selfcam');
+    if (stream) {
+      vself.srcObject = stream;
+      vself.play().catch(() => {});
+    }
+
+    const proto = location.protocol === 'https:' ? 'wss' : 'ws';
+    ws = new WebSocket(`${proto}://${location.host}/ws/${ROOM}?who=prospect&name=${encodeURIComponent(MYNAME)}&t=${encodeURIComponent(TOKEN)}`);
+    ws.binaryType = 'arraybuffer';
+    ws.onopen = () => st('connected · live HD');
+    ws.onclose = () => st('disconnected — refresh to rejoin');
+    let mediaEpoch = 0;
+    const stale = (d) => (typeof d._epoch === 'number') ? d._epoch < mediaEpoch
+                                                        : Date.now() < dropUntil;
+    ws.onmessage = (ev) => {
+      if (typeof ev.data !== 'string') return;
+      let d; try { d = JSON.parse(ev.data); } catch { return; }
+      if (typeof d._epoch === 'number' && d._epoch > mediaEpoch) mediaEpoch = d._epoch;
+      if (d.type === 'audio') {
+        if (d.who === 'companion') {
+          if (stale(d)) { AV.video.bargeDrops++; }
+          else { lane24.push(d.pcm); lastBotSpeechAt = Date.now(); }
+        } else if (d.who === 'external' && d.speaker && d.speaker !== MYNAME) lane16.push(d.pcm);
+      } else if (d.type === 'video' && d.who === 'companion') {
+        if (stale(d)) { AV.video.bargeDrops++; awaitMoof = true; return; }
+        const raw = atob(d.mp4), u = new Uint8Array(raw.length);
+        for (let i = 0; i < raw.length; i++) u[i] = raw.charCodeAt(i);
+        acceptVideoChunk(u);
+      } else if (d.type === 'video_reset') { newPipe();
+      } else if (d.type === 'interrupted') {
+        dropUntil = Date.now() + BARGE_IN_DROP_MS;
+        lastInterruptAt = Date.now();
+        if (window.__vadReset) window.__vadReset();
+        lane24.flush();
+        setTimeout(requestReplay, BARGE_IN_DROP_MS + 50);
+      } else if (d.type === 'flush_audio') { lane24.flush();
+      } else if (d.type === 'mute_all') {
+        setProspectMicMuted(!!d.muted);
+      } else if (d.type === 'caption') {
+        if (d.who === 'companion') lastBotSpeechAt = Date.now();
+        const el = document.getElementById('caption');
+        const tag = d.who === 'companion' ? 'Kira (Bridget)' : (d.who || '');
+        if (el._who !== tag || Date.now() - (el._t || 0) > 4000) { el._buf = ''; el._who = tag; }
+        el._buf = (el._buf || '') + d.text; el._t = Date.now();
+        el.textContent = (tag ? tag + ': ' : '') + el._buf;
+      } else if (d.type === 'peer_cam' && d.who !== 'prospect' && d.jpg) {
+        document.getElementById('peercam').src = 'data:image/jpeg;base64,' + d.jpg;
+        document.getElementById('peername').textContent = (d.name || 'Banker') + ' (Paxton Bank)';
+      }
+    };
+
+    const vad = { minThreshold: 210, noiseFloor: 110, hist: [], speechMs: 0, silenceMs: 1000, userSpeaking: false };
+    window.__vadReset = () => { vad.userSpeaking = false; vad.speechMs = 0; vad.silenceMs = 1000; };
+    function sendPcmWithVad(pcm) {
+      if (micMuted || !ws || ws.readyState !== 1) return;
+      const i16 = new Int16Array(pcm);
+      let acc = 0;
+      for (let i = 0; i < i16.length; i++) acc += i16[i] * i16[i];
+      const rms = Math.sqrt(acc / (i16.length || 1));
+      vad.hist.push(rms); if (vad.hist.length > 8) vad.hist.shift();
+      const smoothed = vad.hist.reduce((a, b) => a + b, 0) / vad.hist.length;
+      const bot = isBotSpeaking();
+      const refNow = bot ? getRefLevel() : 0;
+      const dynamicThreshold = Math.max(
+        vad.minThreshold,
+        vad.noiseFloor * 1.8 + 80 + (bot ? (38 + (refNow > 0 ? refNow * 0.75 + 14 : 0)) : 0));
+      const hasSpeech = rms > dynamicThreshold;
+      const chunkMs = (i16.length / 16000) * 1000;
+      if (hasSpeech) {
+        vad.speechMs += chunkMs;
+        vad.silenceMs = 0;
+        if (vad.speechMs >= 150) vad.userSpeaking = true;
+      } else {
+        vad.speechMs = 0;
+        vad.silenceMs += chunkMs;
+        if (vad.silenceMs > 550) vad.userSpeaking = false;
+        vad.noiseFloor += (smoothed - vad.noiseFloor) * (smoothed > vad.noiseFloor ? 0.08 : 0.05);
+        vad.noiseFloor = Math.min(1500, Math.max(0, vad.noiseFloor));
+      }
+      AV.vad.noiseFloor = Math.round(vad.noiseFloor);
+      // Do not stream continuous background room hum when user is silent (>600ms after speech ends)
+      if (!hasSpeech && !vad.userSpeaking && vad.silenceMs > 600) {
+        AV.vad.gated++;
+        return;
+      }
+      if (!hasSpeech && vad.silenceMs <= 600) {
+        pcm = new ArrayBuffer(pcm.byteLength); // clean digital silence tail to close server VAD
+      }
+      AV.vad.passed++;
+      ws.send(pcm);
+    }
+
+    if (stream && stream.getAudioTracks && stream.getAudioTracks().length > 0) {
+      try {
+        const ac = new (window.AudioContext || window.webkitAudioContext)();
+        if (ac.state === 'suspended') ac.resume().catch(() => {});
+        const srcNode = ac.createMediaStreamSource(stream);
+        let workletOk = false;
+        if (ac.audioWorklet) {
+          try {
+            await ac.audioWorklet.addModule('/static/mic-worklet.js');
+            const worklet = new AudioWorkletNode(ac, 'mic-capture');
+            srcNode.connect(worklet);
+            worklet.port.onmessage = (e) => sendPcmWithVad(e.data.pcm);
+            workletOk = true;
+          } catch (wErr) {
+            console.warn('AudioWorklet fallback to ScriptProcessor:', wErr);
+          }
+        }
+        if (!workletOk) {
+          // HTTP non-localhost fallback: ScriptProcessorNode resampled to 16kHz Int16
+          const sp = ac.createScriptProcessor(2048, 1, 1);
+          const ratio = ac.sampleRate / 16000;
+          sp.onaudioprocess = (ev) => {
+            const input = ev.inputBuffer.getChannelData(0);
+            const outLen = Math.floor(input.length / ratio);
+            const out = new Int16Array(outLen);
+            for (let i = 0; i < outLen; i++) {
+              const s = Math.max(-1, Math.min(1, input[Math.floor(i * ratio)]));
+              out[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
+            }
+            sendPcmWithVad(out.buffer);
+          };
+          srcNode.connect(sp);
+          const muteGain = ac.createGain();
+          muteGain.gain.value = 0;
+          sp.connect(muteGain);
+          muteGain.connect(ac.destination);
+        }
+      } catch (micErr) {
+        console.warn('Mic pipeline fallback note:', micErr);
+      }
+    }
+
+    // camera tile -> ~5fps JPEG over WS
+    const cvs = document.createElement('canvas'); cvs.width = 320; cvs.height = 240;
+    const cctx = cvs.getContext('2d');
+    setInterval(() => {
+      if (!ws || ws.readyState !== 1) return;
+      if (vself.videoWidth > 0) {
+        cctx.drawImage(vself, 0, 0, 320, 240);
+      } else if (fallbackCanvas) {
+        cctx.drawImage(fallbackCanvas, 0, 0, 320, 240);
+      } else {
+        return;
+      }
+      const jpg = cvs.toDataURL('image/jpeg', 0.55).split(',')[1];
+      ws.send(JSON.stringify({ type: 'cam', name: MYNAME, jpg }));
+    }, 200);
+
+    ensureCtx();
+    // route the avatar <video> element's muxed voice through the analyser tap
+    // too, so refLevel sees her REAL voice path (not just the PCM lanes)
+    try {
+      const tap = actx.createMediaElementSource(vid);
+      tap.connect(analyser);
+    } catch {}
+    document.addEventListener('visibilitychange', () => { if (actx && actx.state === 'suspended') actx.resume(); });
+  }
+})();
+</script>
+</body>
+</html>

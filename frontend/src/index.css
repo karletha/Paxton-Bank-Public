@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-primary: #00254a;
+  --color-primary-container: #003b70;
+  --color-on-primary-container: #7ea6e2;
+  --color-secondary-container: #a2c1ff;
+  --color-surface: #f7f9ff;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #f4f6f9;
+  color: #1f2933;
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Glassmorphism Panels */
+.glass-panel {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(0, 30, 66, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ai-glow {
+  box-shadow: inset 0 0 40px rgba(100, 150, 255, 0.15), 0 10px 40px rgba(0, 37, 74, 0.1);
+  animation: ai-pulse 4s infinite alternate;
+}
+
+@keyframes ai-pulse {
+  0% { box-shadow: inset 0 0 30px rgba(165, 200, 255, 0.1), 0 8px 30px rgba(0, 37, 74, 0.08); }
+  100% { box-shadow: inset 0 0 60px rgba(165, 200, 255, 0.25), 0 15px 50px rgba(0, 37, 74, 0.12); }
+}
+
+.human-takeover-btn::before {
+  content: '';
+  position: absolute;
+  top: -4px; left: -4px; right: -4px; bottom: -4px;
+  border-radius: inherit;
+  background: rgba(217, 38, 28, 0.3);
+  z-index: -1;
+  animation: breathe-red 2s infinite alternate;
+}
+
+@keyframes breathe-red {
+  0% { opacity: 0.4; transform: scale(0.98); }
+  100% { opacity: 0.9; transform: scale(1.06); }
+}
+
+/* Waveform animations */
+@keyframes sound {
+  0% { opacity: .35; height: 3px; }
+  100% { opacity: 1; height: 36px; }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2.5s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(217, 38, 28, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 14px rgba(217, 38, 28, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(217, 38, 28, 0); }
+}

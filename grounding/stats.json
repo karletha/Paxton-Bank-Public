@@ -1,0 +1,121 @@
+{
+  "generated": "2026-08-07",
+  "tiles": [
+    {
+      "group": "network",
+      "label": "Markets in Paxton Bank's network",
+      "value": "180+",
+      "source_id": "global-presence"
+    },
+    {
+      "group": "network",
+      "label": "Countries with on-the-ground presence",
+      "value": "90+",
+      "source_id": "global-presence"
+    },
+    {
+      "group": "network",
+      "label": "Employees worldwide",
+      "value": "~219,000",
+      "source_id": "global-presence"
+    },
+    {
+      "group": "network",
+      "label": "Markets with trading floors",
+      "value": "77",
+      "source_id": "global-presence"
+    },
+    {
+      "group": "liquidity",
+      "label": "Monthly pooling flows through Paxton Bank's network",
+      "value": "$2 trillion",
+      "source_id": "tts-liquidity-management"
+    },
+    {
+      "group": "liquidity",
+      "label": "Liquidity management structures supported",
+      "value": "30,000+",
+      "source_id": "tts-liquidity-management"
+    },
+    {
+      "group": "payments",
+      "label": "Clearing house memberships",
+      "value": "250+",
+      "source_id": "tts-payments-receivables"
+    },
+    {
+      "group": "payments",
+      "label": "Currencies for cross-border payments with WorldLink",
+      "value": "135+",
+      "source_id": "tts-payments-receivables"
+    },
+    {
+      "group": "payments",
+      "label": "Financial institutions on 24/7 USD clearing",
+      "value": "1,500+",
+      "source_id": "tts-payments-receivables"
+    },
+    {
+      "group": "trade",
+      "label": "Core trade flows every year",
+      "value": "$145 billion+",
+      "source_id": "tts-global-trade"
+    },
+    {
+      "group": "ecommerce",
+      "label": "Records for real-time identity verification",
+      "value": "4 billion",
+      "source_id": "tts-ecommerce"
+    },
+    {
+      "group": "commercial-bank",
+      "label": "Customer accounts served",
+      "value": "200 million+",
+      "source_id": "commercial-bank-overview"
+    }
+  ],
+  "regions": [
+    {
+      "region": "Asia Pacific",
+      "countries": 17,
+      "highlights": [
+        "China",
+        "India",
+        "Japan",
+        "Singapore"
+      ],
+      "source_id": "global-presence"
+    },
+    {
+      "region": "Europe, Middle East & Africa",
+      "countries": 55,
+      "highlights": [
+        "United Kingdom",
+        "Germany",
+        "France",
+        "United Arab Emirates"
+      ],
+      "source_id": "global-presence"
+    },
+    {
+      "region": "Latin America",
+      "countries": 19,
+      "highlights": [
+        "Brazil",
+        "Mexico",
+        "Argentina",
+        "Chile"
+      ],
+      "source_id": "global-presence"
+    },
+    {
+      "region": "North America",
+      "countries": 2,
+      "highlights": [
+        "United States",
+        "Canada"
+      ],
+      "source_id": "global-presence"
+    }
+  ]
+}

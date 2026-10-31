@@ -1,0 +1,16 @@
+google-genai>=1.16.0
+google-adk>=2.0.0a2
+pydantic>=2.7.0
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+websockets>=13.0
+httpx>=0.27.0
+google-cloud-firestore>=2.19.0
+google-cloud-bigquery>=3.26.0
+google-cloud-storage>=2.18.0
+google-cloud-secret-manager>=2.21.0
+google-cloud-dlp>=3.21.0
+PyJWT>=2.9.0
+opentelemetry-api>=1.27.0
+opentelemetry-sdk>=1.27.0
+opentelemetry-exporter-otlp-proto-http>=1.27.0
